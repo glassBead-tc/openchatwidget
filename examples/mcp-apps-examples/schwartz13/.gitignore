@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.smithery/
+*.log
+.env
+.DS_Store
+.mcp.json
+research-workflows/workflows.db
+
+# IDE files
+*.code-workspace
+
+# AI reference docs (external, 10MB)
+ai_docs/
