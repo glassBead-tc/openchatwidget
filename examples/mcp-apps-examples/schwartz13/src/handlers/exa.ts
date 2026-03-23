@@ -128,7 +128,7 @@ export const findSimilar: OperationHandler = async (args, exa) => {
     const response = await exa.findSimilar(args.url as string, hasOpts ? opts as any : undefined);
     return successResult(response);
   } catch (error) {
-    return errorResult('exa.findSimilar', error);
+    return errorResult('exa.findSimilar', error, 'Ensure url is a valid URL. Use excludeSourceDomain: true to filter out results from the same domain.');
   }
 };
 
@@ -152,7 +152,7 @@ export const getContents: OperationHandler = async (args, exa) => {
     const response = await exa.getContents(urls, hasOpts ? opts as any : undefined);
     return successResult(response);
   } catch (error) {
-    return errorResult('exa.getContents', error);
+    return errorResult('exa.getContents', error, 'Ensure urls are valid URLs. Use livecrawl: "fallback" for fresh content. subpages is a number (not boolean).');
   }
 };
 
@@ -170,6 +170,6 @@ export const answer: OperationHandler = async (args, exa) => {
     const response = await exa.answer(args.query as string, hasOpts ? opts as any : undefined);
     return successResult(response);
   } catch (error) {
-    return errorResult('exa.answer', error);
+    return errorResult('exa.answer', error, 'Ensure query is provided. model is optional (defaults to Exa default). outputSchema must be a valid JSON Schema object if provided.');
   }
 };

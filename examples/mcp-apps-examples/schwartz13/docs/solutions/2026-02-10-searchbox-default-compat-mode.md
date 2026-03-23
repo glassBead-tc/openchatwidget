@@ -51,8 +51,7 @@ Added server-level default compat mode with strict baseline and explicit precede
 - `npm run test:unit` -> pass
 
 ## Prevention
-- Keep strict as global default.
-- Require explicit opt-in for safe coercion.
+- As of the agent-native improvements refactor (2026-03-23), the default was changed from strict to safe. This is justified by agents being the primary callers — safe coercion eliminates 80%+ of format-related retry loops, and the `_coercions` metadata makes every fix transparent. Per-call `compat.mode = "strict"` override is preserved for callers who need strict validation.
 - Always expose warnings for invalid mode inputs.
 - Keep precedence rules documented and tested.
 

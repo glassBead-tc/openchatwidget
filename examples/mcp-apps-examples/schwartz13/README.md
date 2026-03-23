@@ -12,7 +12,7 @@ explicitly.
 - Primary server entrypoints:
   - `src/index.ts`
   - `src/server.ts`
-- Unified tool surface: `manage_websets`
+- Three MCP tools: `search`, `execute`, `status`
 
 ## Quick Start
 
@@ -42,6 +42,47 @@ The server listens on port `7860` by default.
 }
 ```
 
+## Tools
+
+The server exposes three MCP tools.
+
+### `search` — Discover operations
+
+Find available API operations by keyword, domain, or pattern. Use before writing code for `execute`.
+
+```json
+{ "query": "create", "detail": "brief", "domain": "websets", "limit": 10 }
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `query` | string | required | Keyword, domain name, or description |
+| `detail` | `"brief"` \| `"detailed"` \| `"full"` | `"brief"` | Schema detail level |
+| `domain` | string | — | Filter to a domain |
+| `limit` | number | 10 | Max results |
+
+### `execute` — Run code in sandbox
+
+Execute JavaScript with `callOperation(name, args)` and an authenticated `exa` SDK client injected into a sandboxed VM.
+
+```json
+{
+  "code": "const ws = await callOperation('websets.create', { searchQuery: 'AI startups', entity: { type: 'company' }, count: 10 });\nawait callOperation('websets.waitUntilIdle', { id: ws.id });\nreturn await callOperation('items.getAll', { websetId: ws.id });",
+  "timeout": 60000
+}
+```
+
+Sandbox globals:
+- `callOperation(name, args)` — dispatch to any of the 60 operations
+- `console.log/warn/error` — captured and returned with results
+
+### `status` — Account overview
+
+Returns current account state: webset counts by status, running tasks, active monitors, and server capabilities. Call this first to orient.
+
+Long-running workflows are created with `tasks.create` and polled with `tasks.get` /
+`tasks.result`.
+
 ## Local Development
 
 Docker is the primary runtime, but local Node-based development is still useful while
@@ -52,27 +93,6 @@ npm install
 npm run build
 npm start
 ```
-
-## Unified Tool
-
-The server exposes a single MCP tool, `manage_websets`, which dispatches across the Websets,
-search, enrichment, monitoring, task, research, and Exa retrieval operations.
-
-Example:
-
-```json
-{
-  "operation": "websets.create",
-  "args": {
-    "searchQuery": "AI startups in San Francisco",
-    "searchCount": 20,
-    "entity": { "type": "company" }
-  }
-}
-```
-
-Long-running workflows are created with `tasks.create` and polled with `tasks.get` /
-`tasks.result`.
 
 ## Compatibility Mode
 

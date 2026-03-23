@@ -40,7 +40,7 @@ export const list: OperationHandler = async (args, exa) => {
     }
     return successResult(response);
   } catch (error) {
-    return errorResult('items.list', error);
+    return errorResult('items.list', error, 'Verify the websetId is valid. Use websets.list to find valid webset IDs.');
   }
 };
 
@@ -54,7 +54,7 @@ export const get: OperationHandler = async (args, exa) => {
     );
     return successResult(response);
   } catch (error) {
-    return errorResult('items.get', error);
+    return errorResult('items.get', error, 'Verify both websetId and itemId are valid. Use items.list to find valid item IDs within a webset.');
   }
 };
 
@@ -88,6 +88,6 @@ export const del: OperationHandler = async (args, exa) => {
     );
     return successResult(response);
   } catch (error) {
-    return errorResult('items.delete', error);
+    return errorResult('items.delete', error, 'Verify both websetId and itemId are valid. The item may have already been deleted.');
   }
 };

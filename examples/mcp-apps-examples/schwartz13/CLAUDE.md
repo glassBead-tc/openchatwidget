@@ -22,9 +22,20 @@ npm run test:e2e
 
 - `src/index.ts` boots the Express app and listens on port `7860`.
 - `src/server.ts` exposes MCP over `StreamableHTTPServerTransport` at `/mcp`.
-- `src/tools/manageWebsets.ts` registers the unified `manage_websets` tool.
+- `src/tools/operations.ts` exports the `OPERATIONS` registry, `dispatchOperation()`, and supporting utilities.
+- `src/tools/catalog.ts` builds a searchable index of all 60 operations + workflows.
+- `src/tools/searchTool.ts` registers the Code Mode `search` tool (operation discovery).
+- `src/tools/sandbox.ts` executes LLM-generated JS in a `vm` sandbox with `callOperation` injected.
+- `src/tools/executeTool.ts` registers the Code Mode `execute` tool (code execution).
 - `src/handlers/` contains the domain handlers.
 - `src/workflows/` contains background workflows invoked through `tasks.create`.
+
+### MCP Tools
+
+The server exposes three tools:
+1. **`search`** — Code Mode discovery: find operations by keyword/domain with brief/detailed/full schemas
+2. **`execute`** — Code Mode execution: run JS code with `callOperation()` in a sandboxed `vm`
+3. **`status`** — Account overview: webset counts, running tasks, active monitors, server capabilities
 
 ## Agent Guidance
 
