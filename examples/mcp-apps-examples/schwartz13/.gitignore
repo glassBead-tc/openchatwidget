@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.smithery/
+*.log
+.env
+.DS_Store
+.mcp.json
+research-workflows/workflows.db
+
+# Local agent/runtime state
+.agent-team/
+.claude/state/
+.claude/evidence/
+.claude/hooks/__pycache__/
+
+# IDE files
+*.code-workspace
+
+# AI reference docs (external, 10MB)
+ai_docs/

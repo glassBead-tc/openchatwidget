@@ -4,7 +4,7 @@ This is the roadmap for Open Chat Widget. If you're looking to contribute, pleas
 ## General
 - [x] Initialize the project. Create bare bones v0.1.0 of the SDK. Set up Discord community, website, GitHub repo and docs. 
 - [x] Set up basic repo health (clean up CONTRIBUTING.md, ROADMAP.md). Set up merging rules. 
-- [ ] Create a web search agent example 
+- [x] Create a web search agent example (`examples/basic-react-express-app`)
 - [ ] Create a RAG / documentation search agent example 
 
 ## Widget SDK

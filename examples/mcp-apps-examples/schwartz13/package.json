@@ -1,0 +1,55 @@
+{
+  "name": "schwartz13",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Docker-first MCP server for Exa Websets API. Create, manage, and enrich collections of web entities (companies, people, papers) with automated search, enrichments, and monitoring capabilities.",
+  "type": "module",
+  "module": "./src/index.ts",
+  "keywords": [
+    "mcp",
+    "model context protocol",
+    "exa",
+    "websets",
+    "data enrichment",
+    "web scraping",
+    "entity extraction",
+    "company research",
+    "claude",
+    "ai"
+  ],
+  "author": "Exa Labs",
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch & nodemon dist/index.js",
+    "inspector": "npx @modelcontextprotocol/inspector dist/index.js",
+    "test": "vitest run",
+    "test:unit": "vitest run src/handlers/__tests__/{registry,enrichments,monitors,types}.test.ts",
+    "test:integration": "vitest run src/handlers/__tests__/integration/",
+    "test:e2e": "vitest run src/__tests__/e2e/",
+    "test:workflows": "vitest run src/workflows/__tests__/",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "db:init": "bash research-workflows/init-db.sh"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.x",
+    "cors": "^2.8.5",
+    "exa-js": "^2.3.0",
+    "express": "^4.18.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.24",
+    "nodemon": "^3.0.3",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
