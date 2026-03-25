@@ -1,4 +1,9 @@
-# Unified Tool Dispatcher Refactoring Plan
+# Historical: Unified Tool Dispatcher Refactoring Plan
+
+This document is retained as project history.
+
+The unified dispatcher refactor described below has already landed in the current codebase.
+Treat this file as a historical implementation note, not an active plan of record.
 
 ## Objective
 

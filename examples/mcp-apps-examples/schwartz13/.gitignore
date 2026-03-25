@@ -7,6 +7,12 @@ dist/
 .mcp.json
 research-workflows/workflows.db
 
+# Local agent/runtime state
+.agent-team/
+.claude/state/
+.claude/evidence/
+.claude/hooks/__pycache__/
+
 # IDE files
 *.code-workspace
 

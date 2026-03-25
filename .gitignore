@@ -35,3 +35,5 @@ chatbot
 # Google Cloud SDK (installed locally, not part of the project)
 google-cloud-sdk/
 google-cloud-cli-*.tar.gz
+
+.mcp.json
